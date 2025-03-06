@@ -6,6 +6,7 @@ from common.constants import *
 from entity.asteroid import Asteroid
 from entity.player import Player
 from entity.shot import Shot
+from ui.text import Text
 from utility.asteroidfield import AsteroidField
 
 
@@ -17,16 +18,13 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
-    font = pygame.font.Font(None, 24)
-
-    text_surface = font.render("SCORE", True, (255, 255, 255))
-    score_surface = font.render("0", True, (255, 255, 255))
 
     shots = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
 
+    Text.containers = (drawable)
     Shot.containers = (shots, updatable, drawable)
     AsteroidField.containers = (updatable)
     Asteroid.containers = (asteroids, updatable, drawable)
@@ -34,6 +32,11 @@ def main():
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     asteroid_field = AsteroidField()
+
+    font = pygame.font.Font(None, 24)
+    text_surface = Text(font, "SCORE", (255, 255, 255), (10, 10))
+    score_surface = Text(font, "0", (255, 255, 255), (10, 30))
+
     dt = 0
 
     while True:
@@ -54,10 +57,6 @@ def main():
                     asteroid.split()
 
         screen.fill((0, 0, 0))
-        screen.blits([
-            (text_surface, (10, 10)),
-            (score_surface, (10, 30)),
-        ])
 
         for obj in drawable:
             obj.draw(screen)
