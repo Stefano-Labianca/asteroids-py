@@ -2,7 +2,7 @@
 
 Asteroids - Asteroids game built in Python based on the [Asteroids](<https://en.wikipedia.org/wiki/Asteroids_(video_game)) arcade game developed and published by Atari.
 
-Asteroids is my second [Boot.dev](https://www.boot.dev) project!
+Asteroids is my second [Boot.dev](https://www.boot.dev) project!]
 
 # Possible Extension
 
