@@ -1,7 +1,7 @@
 import pygame
 
-from circleshape import CircleShape
 from common.constants import SHOT_RADIUS
+from utility.circleshape import CircleShape
 
 
 class Shot(CircleShape):

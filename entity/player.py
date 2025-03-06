@@ -1,10 +1,10 @@
 import pygame
 
-from circleshape import CircleShape
 from common.constants import (PLAYER_RADIUS, PLAYER_SHOOT_COOLDOWN,
                               PLAYER_SHOOT_SPEED, PLAYER_SPEED,
                               PLAYER_TURN_SPEED)
 from entity.shot import Shot
+from utility.circleshape import CircleShape
 
 
 class Player(CircleShape):
