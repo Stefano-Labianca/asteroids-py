@@ -4,6 +4,7 @@ import pygame
 
 from common.constants import *
 from entity.asteroid import Asteroid
+from entity.particle import Particle
 from entity.player import Player
 from entity.shot import Shot
 from ui.label import Label
@@ -25,6 +26,7 @@ def main():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
 
+    Particle.containers = (drawable, updatable)
     Label.containers = (drawable)
     Shot.containers = (shots, updatable, drawable)
     AsteroidField.containers = (updatable)
@@ -91,6 +93,7 @@ def main():
             for shot in shots:
                 if asteroid.check_collision(shot):
                     shot.kill()
+                    asteroid.draw_explosion_effect()
                     asteroid.split()
 
         screen.fill((0, 0, 0))

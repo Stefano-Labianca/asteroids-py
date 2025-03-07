@@ -4,6 +4,7 @@ import random
 import pygame
 
 from common.constants import ASTEROID_KINDS, ASTEROID_MIN_RADIUS
+from entity.particle import Particle
 from utility.circleshape import CircleShape
 from utility.events import ASTEROID_DESTROYED
 
@@ -49,3 +50,19 @@ class Asteroid(CircleShape):
         second_asteroid = Asteroid(
             self.position.x, self.position.y, new_radius)
         second_asteroid.velocity = second_velocity_vector
+
+    def draw_explosion_effect(self):
+        amount = random.randint(3, 6)
+
+        for _ in range(amount):
+            x = self.position.x
+            y = self.position.y
+            w = random.randint(2, 8)
+            h = random.randint(2, 8)
+
+            speed = random.randint(450, 750)
+            velocity = pygame.Vector2(0, 1) * speed
+            angle = random.uniform(-300, 300)
+
+            particle = Particle(x, y, w, h)
+            particle.velocity = velocity.rotate(angle)
