@@ -46,7 +46,6 @@ def main():
                 return
 
             if event.type == ASTEROID_DESTROYED:
-                print(event.dict["points"])
 
                 score += event.dict["points"]
                 score_surface.kill()
