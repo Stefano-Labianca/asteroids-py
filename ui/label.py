@@ -1,7 +1,7 @@
 import pygame
 
 
-class Text(pygame.sprite.Sprite):
+class Label(pygame.sprite.Sprite):
     containers = ()
 
     def __init__(self, font: pygame.font.Font, content: str, color: tuple[int, int, int], position: tuple[int, int]):
@@ -16,5 +16,5 @@ class Text(pygame.sprite.Sprite):
         self.position = position
 
     def draw(self, screen):
-        text_surface = self.font.render(self.content, True, self.color)
-        screen.blit(text_surface, self.position)
+        label_surface = self.font.render(self.content, True, self.color)
+        screen.blit(label_surface, self.position)
