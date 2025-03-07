@@ -8,6 +8,7 @@ from entity.player import Player
 from entity.shot import Shot
 from ui.label import Label
 from utility.asteroidfield import AsteroidField
+from utility.events import ASTEROID_DESTROYED
 
 
 def main():
@@ -36,13 +37,21 @@ def main():
     font = pygame.font.Font(None, 24)
     text_surface = Label(font, "SCORE", (255, 255, 255), (10, 10))
     score_surface = Label(font, "0", (255, 255, 255), (10, 30))
-
+    score = 0
     dt = 0
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+
+            if event.type == ASTEROID_DESTROYED:
+                print(event.dict["points"])
+
+                score += event.dict["points"]
+                score_surface.kill()
+                score_surface = Label(
+                    font, str(score), (255, 255, 255), (10, 30))
 
         updatable.update(dt)
 

@@ -1,9 +1,11 @@
+import math
 import random
 
 import pygame
 
-from common.constants import ASTEROID_MIN_RADIUS
+from common.constants import ASTEROID_KINDS, ASTEROID_MIN_RADIUS
 from utility.circleshape import CircleShape
+from utility.events import ASTEROID_DESTROYED
 
 
 class Asteroid(CircleShape):
@@ -21,6 +23,15 @@ class Asteroid(CircleShape):
 
     def split(self):
         self.kill()
+        points = int(
+            (ASTEROID_KINDS / (self.radius / ASTEROID_MIN_RADIUS)) * 10
+        )
+
+        pygame.event.post(
+            pygame.event.Event(
+                ASTEROID_DESTROYED, {"points": points}
+            )
+        )
 
         if self.radius <= ASTEROID_MIN_RADIUS:
             return
