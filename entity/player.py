@@ -10,10 +10,11 @@ from utility.circleshape import CircleShape
 class Player(CircleShape):
     containers = ()
 
-    def __init__(self, x: int, y: int):
+    def __init__(self, x: int, y: int, lives: int = 3):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
         self.timer = 0
+        self.lives = lives
 
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
